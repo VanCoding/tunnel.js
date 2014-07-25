@@ -6,9 +6,7 @@ function TunnelServerSession (server,connection){
     this.connection = connection;
     this.datalength = 0;
     this.buffers = [];
-    this.handleData = this.handleData.bind(this)
-    this.connection.on("data",this.handleData);
-    this.connection.resume();
+    this.handleData();
 }
 
 TunnelServerSession.prototype.handleConnection = function(connection){
@@ -64,20 +62,25 @@ TunnelServerSession.prototype.parseConfig = function(i){
 }
 
 
-TunnelServerSession.prototype.handleData = function(d){
+TunnelServerSession.prototype.handleData = function(){
+    var d = this.connection.read();
+    if(d == null){
+        this.connection.once("readable",this.handleData.bind(this));
+        return;
+    }
+
     this.buffers.push(d);
     this.datalength += d.length;
     for(var i = 0; i < d.length; i++){
         if(d[i] == 10){
-            this.connection.pause();
             if(i < d.length-1){
                 this.connection.unshift(d.slice(i+1));
             }
-            this.connection.removeListener("data",this.handleData);
             this.parseConfig(this.datalength-d.length+i);
-            break;
+            return;
         }
     }
+    this.handleData();
 }
 
 module.exports = TunnelServerSession;
