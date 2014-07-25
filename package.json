@@ -1,0 +1,23 @@
+{
+  "name": "tunnel.js",
+  "version": "0.9.0",
+  "description": "A small tunneling framework & client/server utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VanCoding/tunnel.js.git"
+  },
+  "keywords": [
+    "tunnel"
+  ],
+  "author": "Patrik Stutz",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/VanCoding/tunnel.js/issues"
+  },
+  "homepage": "https://github.com/VanCoding/tunnel.js"
+}
