@@ -1,5 +1,5 @@
 var net = require("net");
-var Tunnel = require("./Tunnel.js");
+var Tunnel = require("../lib/Tunnel.js");
 
 function TunnelServerSession (server,connection){
     this.server = server;

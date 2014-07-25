@@ -1,6 +1,6 @@
 var net = require("net");
 var config = require("./config.js");
-var Tunnel = require("./Tunnel.js");
+var Tunnel = require("../lib/Tunnel.js");
 
 function TunnelClient(localport,remoteport,host,password){
     this.localport = localport;
